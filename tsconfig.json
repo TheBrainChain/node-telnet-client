@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "./lib",
+    "target": "ES5",
+    "baseUrl": ".",
+    "paths": {},
+    "sourceMap": true,
+    "allowJs": true,
+    "declaration": true
+  },
+  "include": ["src/**/*.js"]
+}

@@ -1,69 +1,39 @@
-import { EventEmitter } from 'events';
-import { Stream } from 'stream';
-import { Socket, SocketConnectOpts } from 'net';
-
-declare interface ConnectOptions {
-    host?: string;
-    port?: number;
-    localAddress?: string;
-    socketConnectOptions?: SocketConnectOpts;
-    timeout?: number;
-    shellPrompt?: string|RegExp;
-    loginPrompt?: string|RegExp;
-    passwordPrompt?: string|RegExp;
-    failedLoginMatch?: string|RegExp;
-    initialLFCR?: boolean;
-    username?: string;
-    password?: string;
-    sock?: Socket;
-    irs?: string;
-    ors?: string;
-    echoLines?: number;
-    pageSeparator?: string|RegExp;
-    negotiationMandatory?: boolean;
-    execTimeout?: number;
-    sendTimeout?: number;
-    sendTmaxBufferLengthimeout?: number;
-    debug?: boolean;
-}
-
-declare interface ExecOptions {
-    shellPrompt?: string;
-    loginPrompt?: string;
-    failedLoginMatch?: string;
-    timeout?: number;
-    execTimeout?: number;
-    irs?: string;
-    ors?: string;
-    echoLines?: number;
-    maxBufferLength?: number;
-}
-
-declare interface SendOptions {
-    ors?: string;
-    waitfor?: string|RegExp;
-    timeout?: number;
-    maxBufferLength?: number;
-}
-
-export default class telnet_client extends EventEmitter {
-    constructor();
-
-    connect(params: ConnectOptions): Promise<void>;
-
-    destroy(): Promise<void>;
-
-    end(): Promise<void>;
-
-    exec(cmd: string, options?: ExecOptions): Promise<string>;
-
-    getSocket(): Socket;
-
-    send(cmd: string, options?: SendOptions): Promise<string>;
-
-    shell(): Promise<Stream>;
-
-    public socket: Socket;
-
-    public state: 'ready'|'start'|'standby'|'response'|'getprompt'|'login'|'failedlogin'|null;
+export default class Telnet {
+    socket: any;
+    state: string;
+    connect(opts: any): any;
+    timeout: any;
+    shellPrompt: any;
+    loginPrompt: any;
+    passwordPrompt: any;
+    failedLoginMatch: any;
+    loginPromptReceived: boolean;
+    extSock: any;
+    debug: any;
+    username: any;
+    password: any;
+    irs: any;
+    ors: any;
+    echoLines: any;
+    stripShellPrompt: any;
+    pageSeparator: any;
+    negotiationMandatory: any;
+    initialLFCR: any;
+    initialCTRLC: any;
+    execTimeout: any;
+    sendTimeout: any;
+    maxBufferLength: any;
+    inputBuffer: string;
+    shell(callback: any): any;
+    exec(cmd: any, opts: any, callback: any): any;
+    send(data: any, opts: any, callback: any): any;
+    waitfor: any;
+    getSocket(): any;
+    end(): any;
+    destroy(): any;
+    _parseData(chunk: any, callback: any): any;
+    response: string[];
+    _login(handle: any): void;
+    _negotiate(chunk: any): any;
+    _checkSocket(sock: any): boolean;
 }
